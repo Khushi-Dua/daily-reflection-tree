@@ -1,0 +1,69 @@
+graph TD
+    START["🌙 START<br/>Good evening. Let's reflect."]
+    
+    AXIS1["AXIS 1 INTRO<br/>How you handled things"]
+    
+    A1Q1["❓ A1_Q1<br/>Describe today<br/>(Productive|Mixed|Tough|Frustrating)"]
+    
+    A1_HIGH["❓ A1_Q2_HIGH<br/>When well: what made it?<br/>(I prepared|Team|Lucky|Adapted)"]
+    
+    A1_LOW["❓ A1_Q2_LOW<br/>When difficult: instinct?<br/>(Control|Wait|Alone|Clarify)"]
+    
+    A1_INT["✓ REFLECT INT<br/>You see your agency"]
+    
+    A1_EXT["✓ REFLECT EXT<br/>Where was your choice?"]
+    
+    BRIDGE1["→ BRIDGE 1-2<br/>Shift to what you gave"]
+    
+    A2Q1["❓ A2_Q1<br/>One interaction today<br/>(Helped|Taught|Needed|Overlooked)"]
+    
+    A2_CONTRIB["✓ REFLECT CONTRIB<br/>You stepped beyond"]
+    
+    A2_ENT["✓ REFLECT ENT<br/>Look at what you gave"]
+    
+    BRIDGE2["→ BRIDGE 2-3<br/>Widen the lens"]
+    
+    A3Q1["❓ A3_Q1<br/>Who was in the picture?<br/>(Me|Team|Colleague|Customer)"]
+    
+    A3_SELF["✓ REFLECT SELF<br/>Your day was about you"]
+    
+    A3_OTHER["✓ REFLECT OTHER<br/>You see the system"]
+    
+    A3_TRANS["✓ REFLECT TRANS<br/>That's transcendence"]
+    
+    SUMMARY["📊 SUMMARY<br/>Your reflection pattern"]
+    
+    END["🌅 END<br/>See you tomorrow"]
+    
+    START --> AXIS1
+    AXIS1 --> A1Q1
+    
+    A1Q1 -->|Productive/Mixed| A1_HIGH
+    A1Q1 -->|Tough/Frustrating| A1_LOW
+    
+    A1_HIGH --> A1_INT
+    A1_LOW -->|Control/Clarify| A1_INT
+    A1_LOW -->|Wait/Alone| A1_EXT
+    
+    A1_INT --> BRIDGE1
+    A1_EXT --> BRIDGE1
+    
+    BRIDGE1 --> A2Q1
+    
+    A2Q1 -->|Helped/Taught| A2_CONTRIB
+    A2Q1 -->|Needed/Overlooked| A2_ENT
+    
+    A2_CONTRIB --> BRIDGE2
+    A2_ENT --> BRIDGE2
+    
+    BRIDGE2 --> A3Q1
+    
+    A3Q1 -->|Just me| A3_SELF
+    A3Q1 -->|Team| A3_OTHER
+    A3Q1 -->|Colleague/Customer| A3_TRANS
+    
+    A3_SELF --> SUMMARY
+    A3_OTHER --> SUMMARY
+    A3_TRANS --> SUMMARY
+    
+    SUMMARY --> END
