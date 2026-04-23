@@ -315,8 +315,8 @@ class ReflectionAgent:
                 print("Invalid input. Please enter a number.")
     
     def save_transcript(self, filepath: str):
-        """Save session transcript to file."""
-        with open(filepath, 'w') as f:
+    """Save session transcript to file."""
+    with open(filepath, 'w', encoding='utf-8') as f:
             f.write("# REFLECTION SESSION TRANSCRIPT\n\n")
             f.write(f"Path taken: {' → '.join(self.state.path)}\n\n")
             f.write("## Session Flow\n\n")
