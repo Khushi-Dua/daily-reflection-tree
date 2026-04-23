@@ -344,7 +344,7 @@ class ReflectionAgent:
 
 def main():
     """Main entry point."""
-    tree_file = Path(__file__).parent / "reflection-tree.json"
+    tree_file = Path(__file__).parent.parent / "tree" / "reflection-tree.json"
     
     if not tree_file.exists():
         print(f"Error: Tree file not found at {tree_file}")
@@ -362,3 +362,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
