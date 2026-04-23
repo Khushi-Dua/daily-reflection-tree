@@ -1,0 +1,331 @@
+{
+  "metadata": {
+    "title": "Daily Reflection Tree",
+    "version": "1.0",
+    "description": "A deterministic reflection tool for end-of-day employee reflection",
+    "axes": ["Locus (Victim↔Victor)", "Orientation (Entitlement↔Contribution)", "Radius (Self-Centrism↔Altrocentrism)"],
+    "total_nodes": 35
+  },
+  "nodes": [
+    {
+      "id": "START",
+      "parentId": null,
+      "type": "start",
+      "text": "Good evening. Let's reflect on your day.\n\nTake a moment. No rush. These questions are just for you.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "AXIS1_INTRO",
+      "parentId": "START",
+      "type": "bridge",
+      "text": "Let's start by looking at how you handled today's challenges.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A1_Q1",
+      "parentId": "AXIS1_INTRO",
+      "type": "question",
+      "text": "How would you describe today in one word?",
+      "options": ["Productive", "Mixed", "Tough", "Frustrating"],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A1_DECISION_1",
+      "parentId": "A1_Q1",
+      "type": "decision",
+      "text": "",
+      "options": "answer=Productive|Mixed:A1_Q2_HIGH;answer=Tough|Frustrating:A1_Q2_LOW",
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A1_Q2_HIGH",
+      "parentId": "A1_DECISION_1",
+      "type": "question",
+      "text": "You said '{A1_Q1.answer}'. When something went well today, what made it happen?",
+      "options": ["I prepared well", "The team came through", "I adapted on the fly", "The timing was right"],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A1_Q2_LOW",
+      "parentId": "A1_DECISION_1",
+      "type": "question",
+      "text": "You said '{A1_Q1.answer}'. When things got difficult, what was your first instinct?",
+      "options": ["Figure out what I could control", "Wait for someone to step in", "Push through alone", "Ask for clarity"],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A1_SIGNAL_HIGH",
+      "parentId": "A1_Q2_HIGH",
+      "type": "decision",
+      "text": "",
+      "options": "answer=I prepared well|I adapted on the fly:A1_REFLECT_INT;answer=The team came through|The timing was right:A1_REFLECT_INT",
+      "target": null,
+      "signal": "axis1:internal"
+    },
+    {
+      "id": "A1_SIGNAL_LOW",
+      "parentId": "A1_Q2_LOW",
+      "type": "decision",
+      "text": "",
+      "options": "answer=Figure out what I could control|Ask for clarity:A1_REFLECT_INT;answer=Wait for someone to step in|Push through alone:A1_REFLECT_EXT",
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A1_REFLECT_INT",
+      "parentId": "A1_SIGNAL_HIGH",
+      "type": "reflection",
+      "text": "You see your hand in what happened today. Not everything went your way, but you stayed engaged — you prepared, adapted, or worked with your team. That's agency. That's choosing your response even when the situation was tough.",
+      "options": [],
+      "target": null,
+      "signal": "axis1:internal"
+    },
+    {
+      "id": "A1_REFLECT_EXT",
+      "parentId": "A1_SIGNAL_LOW",
+      "type": "reflection",
+      "text": "A tough day pulls your attention outward — to what others did or didn't do, to timing, to luck. That's natural. But somewhere in there, even if it was small, you made a call. You didn't freeze. What was that moment?",
+      "options": [],
+      "target": null,
+      "signal": "axis1:external"
+    },
+    {
+      "id": "BRIDGE_1_2",
+      "parentId": "A1_REFLECT_INT",
+      "type": "bridge",
+      "text": "Good. Now let's shift — from how you handled things, to what you gave.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "BRIDGE_1_2_ALT",
+      "parentId": "A1_REFLECT_EXT",
+      "type": "bridge",
+      "text": "Good. Now let's shift — from how you handled things, to what you gave.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A2_Q1",
+      "parentId": "BRIDGE_1_2",
+      "type": "question",
+      "text": "Think about one moment today where you interacted with someone. What was happening?",
+      "options": ["I helped with something outside my role", "I taught or explained something", "I needed support from someone", "I felt overlooked or underappreciated"],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A2_Q1_ALT",
+      "parentId": "BRIDGE_1_2_ALT",
+      "type": "question",
+      "text": "Think about one moment today where you interacted with someone. What was happening?",
+      "options": ["I helped with something outside my role", "I taught or explained something", "I needed support from someone", "I felt overlooked or underappreciated"],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A2_SIGNAL_CONTRIB",
+      "parentId": "A2_Q1",
+      "type": "decision",
+      "text": "",
+      "options": "answer=I helped with something outside my role|I taught or explained something:A2_REFLECT_CONTRIB;answer=I needed support from someone|I felt overlooked or underappreciated:A2_REFLECT_ENT",
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A2_SIGNAL_CONTRIB_ALT",
+      "parentId": "A2_Q1_ALT",
+      "type": "decision",
+      "text": "",
+      "options": "answer=I helped with something outside my role|I taught or explained something:A2_REFLECT_CONTRIB;answer=I needed support from someone|I felt overlooked or underappreciated:A2_REFLECT_ENT",
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A2_REFLECT_CONTRIB",
+      "parentId": "A2_SIGNAL_CONTRIB",
+      "type": "reflection",
+      "text": "You stepped beyond what was asked of you. You helped. You taught. That's not obligation — that's choice. Organizations run on moments like this. And they're invisible until someone stops to notice them. You just did.",
+      "options": [],
+      "target": null,
+      "signal": "axis2:contribution"
+    },
+    {
+      "id": "A2_REFLECT_ENT",
+      "parentId": "A2_SIGNAL_CONTRIB_ALT",
+      "type": "reflection",
+      "text": "You needed something today, or felt your work went unrecognized. Both are real. And both are invitations to look beyond the scorecard — to what you *did* that went unseen. What extra thing happened that wouldn't have happened if you weren't there?",
+      "options": [],
+      "target": null,
+      "signal": "axis2:entitlement"
+    },
+    {
+      "id": "BRIDGE_2_3",
+      "parentId": "A2_REFLECT_CONTRIB",
+      "type": "bridge",
+      "text": "Last question. Let's widen the lens — from you, to us.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "BRIDGE_2_3_ALT",
+      "parentId": "A2_REFLECT_ENT",
+      "type": "bridge",
+      "text": "Last question. Let's widen the lens — from you, to us.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A3_Q1",
+      "parentId": "BRIDGE_2_3",
+      "type": "question",
+      "text": "When you think about today's biggest challenge or win, who was part of that picture?",
+      "options": ["Just me — it was my problem or my achievement", "My immediate team — we were all in it", "A colleague who had it harder than I did", "The customer or the person we're serving"],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A3_Q1_ALT",
+      "parentId": "BRIDGE_2_3_ALT",
+      "type": "question",
+      "text": "When you think about today's biggest challenge or win, who was part of that picture?",
+      "options": ["Just me — it was my problem or my achievement", "My immediate team — we were all in it", "A colleague who had it harder than I did", "The customer or the person we're serving"],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A3_SIGNAL",
+      "parentId": "A3_Q1",
+      "type": "decision",
+      "text": "",
+      "options": "answer=Just me — it was my problem or my achievement:A3_REFLECT_SELF;answer=My immediate team — we were all in it:A3_REFLECT_TEAM;answer=A colleague who had it harder than I did|The customer or the person we're serving:A3_REFLECT_OTHER",
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A3_SIGNAL_ALT",
+      "parentId": "A3_Q1_ALT",
+      "type": "decision",
+      "text": "",
+      "options": "answer=Just me — it was my problem or my achievement:A3_REFLECT_SELF;answer=My immediate team — we were all in it:A3_REFLECT_TEAM;answer=A colleague who had it harder than I did|The customer or the person we're serving:A3_REFLECT_OTHER",
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "A3_REFLECT_SELF",
+      "parentId": "A3_SIGNAL",
+      "type": "reflection",
+      "text": "Your day was about you. That's honest. And it's also an invitation — to notice tomorrow, who else was in the room. Not to diminish what you did, but to see the web you're part of.",
+      "options": [],
+      "target": null,
+      "signal": "axis3:self"
+    },
+    {
+      "id": "A3_REFLECT_TEAM",
+      "parentId": "A3_SIGNAL_ALT",
+      "type": "reflection",
+      "text": "You see the system. The wins and struggles of today weren't just yours — they were shared. That perspective is rare. Hold it.",
+      "options": [],
+      "target": null,
+      "signal": "axis3:other"
+    },
+    {
+      "id": "A3_REFLECT_OTHER",
+      "parentId": "A3_SIGNAL",
+      "type": "reflection",
+      "text": "You looked beyond your own line and saw someone else's struggle, or someone else's gain. That's transcendence — your meaning comes from serving something beyond yourself. That's where real growth lives.",
+      "options": [],
+      "target": null,
+      "signal": "axis3:other"
+    },
+    {
+      "id": "SUMMARY_BRIDGE",
+      "parentId": "A3_REFLECT_SELF",
+      "type": "bridge",
+      "text": "Here's what today showed about you.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "SUMMARY_BRIDGE_ALT",
+      "parentId": "A3_REFLECT_TEAM",
+      "type": "bridge",
+      "text": "Here's what today showed about you.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "SUMMARY_BRIDGE_ALT2",
+      "parentId": "A3_REFLECT_OTHER",
+      "type": "bridge",
+      "text": "Here's what today showed about you.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "SUMMARY",
+      "parentId": "SUMMARY_BRIDGE",
+      "type": "summary",
+      "text": "Today you leaned {axis1.dominant} on agency. You focused on {axis2.dominant} in what you gave. And your concern reached {axis3.dominant}. This is your pattern. Not forever — but today.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "SUMMARY_ALT",
+      "parentId": "SUMMARY_BRIDGE_ALT",
+      "type": "summary",
+      "text": "Today you leaned {axis1.dominant} on agency. You focused on {axis2.dominant} in what you gave. And your concern reached {axis3.dominant}. This is your pattern. Not forever — but today.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "SUMMARY_ALT2",
+      "parentId": "SUMMARY_BRIDGE_ALT2",
+      "type": "summary",
+      "text": "Today you leaned {axis1.dominant} on agency. You focused on {axis2.dominant} in what you gave. And your concern reached {axis3.dominant}. This is your pattern. Not forever — but today.",
+      "options": [],
+      "target": null,
+      "signal": null
+    },
+    {
+      "id": "END",
+      "parentId": "SUMMARY",
+      "type": "end",
+      "text": "See you tomorrow. Same time. Same questions. Different answers.",
+      "options": [],
+      "target": null,
+      "signal": null
+    }
+  ],
+  "signal_mappings": {
+    "axis1": {
+      "internal": ["I prepared well", "I adapted on the fly", "Figure out what I could control", "Ask for clarity"],
+      "external": ["The team came through", "The timing was right", "Wait for someone to step in", "Push through alone"]
+    },
+    "axis2": {
+      "contribution": ["I helped with something outside my role", "I taught or explained something"],
+      "entitlement": ["I needed support from someone", "I felt overlooked or underappreciated"]
+    },
+    "axis3": {
+      "self": ["Just me — it was my problem or my achievement"],
+      "other": ["My immediate team — we were all in it", "A colleague who had it harder than I did", "The customer or the person we're serving"]
+    }
+  }
+}
